@@ -62,12 +62,13 @@ What happened to `bak/test.txt`?
 We try to add `README.md` to a new commit object, which isn't covered in the git-scm tutorial.
 <br />Steps:
 - Write `README.md` as a hashed object, with `git hash-object -w README.md`
+- Read tree of latest commit into index, specifying `-m`, which merges the tree with the git object representing `README.md`.
 - Add the git object to index with:
 <pre><code>git update-index --add --cacheinfo 100644\
 850ac61118774cf2a2d38f080fb75f006573f1e0 README.md</pre></code>
-- Read tree of latest commit into index, specifying `-m`, which merges the tree with the git object representing `README.md`.
-- Write tree.
+- Write tree, which creates `5fae5d60d4b756185dacda81be828d324e7cb9f4`.
 - Create commit object to tree, and parent to previous commit object.
+- Update `refs/heads/master` to point to newest commit tree. It is apparent, when running `git rev-parse HEAD`, that `HEAD` is not on the most recent commit object.
 
 # Bash helpers
 Shortcut to refer to object hash sent to `git cat-file`:
